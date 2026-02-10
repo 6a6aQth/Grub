@@ -1,0 +1,239 @@
+GRUB: Dynamic Digital Menu Platform — System Design Document
+Framework: M.A.S.T.E.R. (Model → Architecture → Scale → Tradeoffs → Execution → Resilience)
+________________________________________
+M — MODEL THE SYSTEM (Requirements & Constraints)
+1. Functional Requirements
+Actors
+•	Restaurant Owner / Manager
+•	Restaurant Staff
+•	Customer (QR scan user)
+•	Platform Admin
+Core Features (Customer-facing)
+•	Scan QR → open digital menu (no login)
+•	View dish categories and dishes in real time
+•	See dish images (2D mandatory, 3D optional)
+•	See dish availability (In Stock / Out of Stock)
+•	View dish-level reviews & ratings
+•	Submit dish reviews (light auth / device-based)
+•	View top-of-menu banners (promotions, holidays, announcements)
+Core Features (Restaurant-facing)
+•	CRUD dish categories
+•	CRUD dishes
+•	Upload images (2D)
+•	Enable/disable 3D dish rendering (tier-based)
+•	Toggle dish availability in real time
+•	Set prices and descriptions
+•	Create promotional / holiday banners
+•	Preview customer menu view
+Admin Features
+•	Restaurant onboarding & verification
+•	Tier management (Free / Paid)
+•	Abuse & review moderation
+•	Analytics overview
+________________________________________
+2. Non-Functional Requirements
+•	Availability: 99.9%
+•	Latency: < 200ms p95 for menu fetch
+•	Scalability: Horizontal scaling supported
+•	Security: Auth, role-based access, encrypted storage
+•	Observability: Logs, metrics, alerts
+•	Cost Efficiency: Low infra cost at small scale
+•	Mobile-first UX: Majority of traffic is mobile
+________________________________________
+3. Constraints
+•	Traffic initially concentrated in urban African cities
+•	Read-heavy workload (menu views >> writes)
+•	Restaurant owners may be low-tech
+•	Limited ops team initially
+•	Images are primary storage driver
+________________________________________
+4. Success Metrics
+•	Menu load time < 1 second on 3G
+•	QR scan → menu render success rate > 99%
+•	Owner action (CRUD / toggle) reflected < 5 seconds
+•	Monthly Active Restaurants
+•	Avg scans / restaurant / day
+________________________________________
+A — ARCHITECT (High-Level Architecture)
+1. Core Components
+Frontend
+•	Customer Web App (QR landing)
+•	Restaurant Dashboard (Web)
+Backend
+•	API Gateway
+•	Auth Service
+•	Menu Service
+•	Review Service
+•	Banner/Promotion Service
+•	Analytics Service
+Data Layer
+•	Primary Database (SQL)
+•	Cache (Redis)
+•	Object Storage (Images / 3D assets)
+Infrastructure
+•	Load Balancer
+•	CDN
+•	Background Workers
+________________________________________
+2. User Flow (Customer)
+1.	Scan QR Code
+2.	Request menu by restaurant_id
+3.	CDN serves cached static assets
+4.	API fetches menu data
+5.	Cache hit → Redis
+6.	Cache miss → DB
+7.	Render menu + banners + availability
+________________________________________
+3. User Flow (Restaurant Owner)
+1.	Login
+2.	Access dashboard
+3.	CRUD dishes / categories
+4.	Toggle availability
+5.	Publish banner
+6.	Changes propagate to cache
+________________________________________
+4. Data Model (Simplified)
+Restaurant
+•	id
+•	name
+•	location
+•	tier
+Category
+•	id
+•	restaurant_id
+•	name
+•	order
+Dish
+•	id
+•	category_id
+•	name
+•	price
+•	description
+•	image_url
+•	is_available
+•	has_3d
+Review
+•	id
+•	dish_id
+•	rating
+•	comment
+•	created_at
+Banner
+•	id
+•	restaurant_id
+•	type (promo | holiday | announcement)
+•	content
+•	start_time
+•	end_time
+________________________________________
+5. API Structure (REST)
+•	GET /restaurants/{id}/menu
+•	POST /categories
+•	POST /dishes
+•	PATCH /dishes/{id}/availability
+•	POST /banners
+•	GET /dishes/{id}/reviews
+•	POST /dishes/{id}/reviews
+________________________________________
+6. Deployment Architecture
+•	CDN → Load Balancer → API Servers
+•	API Servers → Redis → PostgreSQL
+•	Images → Object Storage (S3-compatible)
+________________________________________
+S — SCALE THE SYSTEM
+1. Traffic Estimation (Initial)
+•	500 restaurants
+•	Avg 5 scans/day/restaurant
+•	≈ 2,500 daily sessions
+•	Peak burst during lunch/dinner
+Read / Write Ratio
+•	Reads: ~95%
+•	Writes: ~5%
+________________________________________
+2. Scaling Strategy
+•	CDN for images & static assets
+•	Redis for hot menu data
+•	Horizontal API scaling
+•	DB read replicas (later)
+________________________________________
+3. Bottlenecks & Mitigation
+•	Database reads → Redis cache
+•	Image delivery → CDN
+•	Burst traffic → Autoscaling
+________________________________________
+T — TRADEOFFS (Technology Choices)
+Frontend
+•	Next.js
+o	SEO-friendly
+o	Fast mobile performance
+Backend
+•	Node.js (NestJS)
+o	Structured
+o	Fast iteration
+Database
+•	PostgreSQL
+o	Strong relations
+o	Transactions
+Cache
+•	Redis
+o	Read-heavy optimization
+Storage
+•	S3 / Cloudflare R2
+o	Cheap image hosting
+API Protocol
+•	REST (simple, mobile-friendly)
+________________________________________
+Key Tradeoffs
+•	Monolith initially → easier dev
+•	Eventual consistency acceptable for menus
+•	SaaS-first monetization → predictable revenue
+________________________________________
+E — EXECUTION PLAN (DevOps & Infra)
+Hosting (Phase 1)
+•	Frontend: Vercel / Cloudflare Pages
+•	Backend: Render / Fly.io
+•	DB: Managed Postgres (Neon / RDS)
+•	Cache: Managed Redis
+•	Storage: S3-compatible
+________________________________________
+CI/CD
+•	GitHub Actions
+•	Auto deploy on main branch
+•	Environment-based configs
+________________________________________
+Security
+•	JWT auth
+•	Role-based access
+•	HTTPS everywhere
+•	Secrets via environment manager
+________________________________________
+R — RESILIENCE (Reliability & Observability)
+Reliability
+•	Health checks
+•	Auto-restart containers
+•	DB backups (daily)
+•	Graceful degradation (no images → text menu)
+________________________________________
+Observability
+•	Logging: centralized logs
+•	Metrics: latency, error rate, RPS
+•	Alerts: downtime, DB saturation
+________________________________________
+Disaster Recovery
+•	Automated DB snapshots
+•	Object storage versioning
+•	RTO: < 1 hour
+•	RPO: < 24 hours
+________________________________________
+Final Notes
+This system is intentionally designed to:
+•	Start simple
+•	Scale horizontally
+•	Monetize early (SaaS tiers)
+•	Add advanced features (3D, APIs, ads) later
+The architecture supports evolution into:
+•	Food discovery engine
+•	API-first food infrastructure
+•	Data-driven restaurant intelligence platform
+________________________________________
+

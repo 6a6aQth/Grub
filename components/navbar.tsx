@@ -17,7 +17,7 @@ export function Navbar() {
           {/* Logo Section */}
           <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center group -ml-4">
-              <div className="relative w-[450px] h-16 scale-125 origin-left translation-colors">
+              <div className="relative w-[280px] md:w-[450px] h-16 scale-125 origin-left translation-colors">
                 <NextImage
                   src="/Logo.png"
                   alt="Grub Logo"

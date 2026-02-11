@@ -121,10 +121,10 @@ export default function MenuPage() {
       <div className="absolute top-6 right-6 z-50">
         <Link
           href="/"
-          className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-full shadow-sm hover:shadow-md transition-all text-muted-foreground hover:text-foreground group"
+          className="flex items-center gap-2 px-4 py-2 bg-brand-beige/90 backdrop-blur-sm border-none rounded-full shadow-sm hover:shadow-md transition-all text-brand-crimson font-semibold group"
         >
           <X size={18} className="group-hover:rotate-90 transition-transform duration-300" />
-          <span className="text-sm font-medium">Exit Menu</span>
+          <span className="text-sm">Exit Menu</span>
         </Link>
       </div>
 

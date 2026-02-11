@@ -65,6 +65,10 @@ const config: Config = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        brand: {
+          beige: '#F5F5DC',
+          crimson: '#692b39',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

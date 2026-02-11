@@ -35,7 +35,7 @@ export default function HomePage() {
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,#000)]"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-20 lg:gap-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-12">
           <div className="max-w-xl z-20 pt-8 md:pt-12 text-center lg:text-left flex flex-col items-center lg:items-start">
             <h1 className="font-serif text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight">
               Scan.<br />
@@ -99,7 +99,7 @@ export default function HomePage() {
             </div>
 
             {/* Bottom Right - Coffee/Chocolate */}
-            <div className="absolute bottom-0 lg:bottom-[-7.5%] right-0 lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
+            <div className="absolute bottom-[-5%] right-[-15%] lg:bottom-[-7.5%] lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
               <NextImage
                 src="/Hero Image 4 Bottom Right.png"
                 alt="Desserts and Coffee"

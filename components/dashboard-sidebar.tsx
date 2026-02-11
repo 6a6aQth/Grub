@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, UtensilsCrossed, Megaphone, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { GrubLogoWithText } from './grub-logo'
 
 export function DashboardSidebar() {
   const pathname = usePathname()
@@ -27,7 +28,7 @@ export function DashboardSidebar() {
   ]
 
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-primary text-white border-r border-primary-foreground/10">
+    <aside className="hidden md:flex flex-col w-64 bg-primary text-white border-r border-primary-foreground/10 h-screen sticky top-0">
       <div className="p-6 border-b border-primary-foreground/10">
         <h2 className="text-xl font-bold">Restaurant Admin</h2>
       </div>
@@ -40,11 +41,10 @@ export function DashboardSidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
-                isActive
-                  ? 'bg-primary-foreground/20 text-white'
-                  : 'text-primary-foreground hover:bg-primary-foreground/10'
-              }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${isActive
+                ? 'bg-primary-foreground/20 text-white'
+                : 'text-primary-foreground hover:bg-primary-foreground/10'
+                }`}
             >
               <Icon size={20} />
               {item.label}
@@ -53,17 +53,23 @@ export function DashboardSidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t border-primary-foreground/10">
+      <div className="p-4 mt-auto">
         <Button
           variant="outline"
-          className="w-full text-primary border-primary-foreground/20 hover:bg-primary-foreground/10 bg-transparent"
+          className="w-full text-white border-white/20 hover:bg-white/10 bg-transparent flex items-center justify-center gap-2"
           asChild
         >
           <Link href="/">
-            <LogOut size={18} className="mr-2" />
-            Back to Menu
+            <LogOut size={18} />
+            Logout
           </Link>
         </Button>
+      </div>
+
+      <div className="p-6 border-t border-primary-foreground/10">
+        <div className="flex justify-center">
+          <GrubLogoWithText className="w-32 h-8 opacity-70" />
+        </div>
       </div>
     </aside>
   )

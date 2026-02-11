@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: 'Grub - Digital Menu Platform',
   description: 'Scan, browse, and order from your favorite restaurants with Grub digital menu',
   generator: 'v0.app',
-  theme_color: '#DC143C',
+  themeColor: '#692b39',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

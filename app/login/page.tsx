@@ -4,15 +4,18 @@ import React from "react"
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,7 +29,14 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
     console.log('Form submitted:', formData)
+
+    // Simulate API call and redirect
+    setTimeout(() => {
+      setIsLoading(false)
+      router.push('/dashboard')
+    }, 1500)
   }
 
   return (
@@ -123,8 +133,16 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 className="w-full bg-primary text-white hover:bg-primary/90 h-11"
+                disabled={isLoading}
               >
-                {isLogin ? 'Sign In' : 'Create Account'}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait
+                  </>
+                ) : (
+                  isLogin ? 'Sign In' : 'Create Account'
+                )}
               </Button>
             </form>
 

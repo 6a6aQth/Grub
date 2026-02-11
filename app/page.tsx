@@ -26,13 +26,13 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                className="bg-[#F5F5DC] text-[#800000] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
+                className="bg-[#F5F5DC] text-[#692b39] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
                 asChild
               >
                 <Link href="/menu">View Sample Menu</Link>
               </Button>
               <Button
-                className="bg-[#F5F5DC] text-[#800000] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
+                className="bg-[#F5F5DC] text-[#692b39] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
                 asChild
               >
                 <Link href="/login">For Restaurants</Link>

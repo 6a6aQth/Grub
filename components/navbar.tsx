@@ -62,7 +62,7 @@ export function Navbar() {
           <div className="flex-1 flex justify-end items-center gap-4">
             <div className="hidden md:block">
               <Button
-                className="bg-accent text-primary hover:bg-accent/90 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+                className="bg-accent text-secondary hover:bg-accent/90 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
                 asChild
               >
                 <Link href="/login">Sign In</Link>
@@ -106,7 +106,7 @@ export function Navbar() {
               Contact
             </Link>
             <Button
-              className="w-full bg-accent text-primary hover:bg-accent/90 font-semibold rounded-lg"
+              className="w-full bg-accent text-secondary hover:bg-accent/90 font-semibold rounded-lg"
               asChild
             >
               <Link href="/login">Sign In</Link>

@@ -37,14 +37,14 @@ h1, h2, h3, h4, h5, h6 {
     --secondary-foreground: 0 0% 12%;
     --muted: 0 0% 88%;
     --muted-foreground: 0 0% 50%;
-    --accent: 0 39% 41%; /* Maroon #7A3D3D */
+    --accent: 346 42% 29%; /* Crimson #692b39 */
     --accent-foreground: 39 16% 92%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 90%;
     --input: 0 0% 95%;
-    --ring: 0 39% 41%;
-    --chart-1: 0 39% 41%; /* Maroon */
+    --ring: 346 42% 29%;
+    --chart-1: 346 42% 29%; /* Crimson */
     --chart-2: 0 0% 12%; /* Black */
     --chart-3: 39 16% 92%; /* Beige */
     --chart-4: 0 30% 50%;
@@ -54,10 +54,10 @@ h1, h2, h3, h4, h5, h6 {
     --sidebar-foreground: 39 16% 92%;
     --sidebar-primary: 0 0% 12%;
     --sidebar-primary-foreground: 39 16% 92%;
-    --sidebar-accent: 0 39% 41%;
+    --sidebar-accent: 346 42% 29%;
     --sidebar-accent-foreground: 39 16% 92%;
     --sidebar-border: 0 0% 22%;
-    --sidebar-ring: 0 39% 41%;
+    --sidebar-ring: 346 42% 29%;
   }
   .dark {
     --background: 0 0% 3.9%;

@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Navbar } from '@/components/navbar'
 import { PromoBanner } from '@/components/promo-banner'
 import { CategoryTabs } from '@/components/category-tabs'
 import { DishCard } from '@/components/dish-card'
 import { DishDetailModal } from '@/components/dish-detail-modal'
-import { MapPin } from 'lucide-react'
+import { MapPin, ArrowLeft, X } from 'lucide-react'
+import Link from 'next/link'
 
 const mockRestaurant = {
   name: 'The Green Plate',
@@ -19,7 +19,7 @@ const mockDishes = [
     id: '1',
     name: 'Grilled Salmon',
     category: 'Main Courses',
-    image: 'https://placehold.co/300x200?text=Grilled+Salmon',
+    image: '/grilled salmon.webp',
     price: 24.99,
     description: 'Fresh Atlantic salmon with herb butter',
     rating: 4.9,
@@ -29,7 +29,7 @@ const mockDishes = [
     id: '2',
     name: 'Caesar Salad',
     category: 'Salads',
-    image: 'https://placehold.co/300x200?text=Caesar+Salad',
+    image: '/Caesar Salad.jpg',
     price: 12.99,
     description: 'Crisp romaine with parmesan and croutons',
     rating: 4.6,
@@ -39,7 +39,7 @@ const mockDishes = [
     id: '3',
     name: 'Truffle Risotto',
     category: 'Main Courses',
-    image: 'https://placehold.co/300x200?text=Truffle+Risotto',
+    image: '/Truffle Risotto.jpg',
     price: 22.99,
     description: 'Creamy arborio rice with black truffle',
     rating: 4.8,
@@ -49,7 +49,7 @@ const mockDishes = [
     id: '4',
     name: 'Chocolate Lava Cake',
     category: 'Desserts',
-    image: 'https://placehold.co/300x200?text=Lava+Cake',
+    image: '/Chocolate Lava Cake.jpg',
     price: 9.99,
     description: 'Warm chocolate cake with melting center',
     rating: 4.9,
@@ -59,7 +59,7 @@ const mockDishes = [
     id: '5',
     name: 'Margherita Pizza',
     category: 'Main Courses',
-    image: 'https://placehold.co/300x200?text=Margherita+Pizza',
+    image: '/margherita pizza.jpg',
     price: 16.99,
     description: 'Classic pizza with fresh mozzarella and basil',
     rating: 4.7,
@@ -69,7 +69,7 @@ const mockDishes = [
     id: '6',
     name: 'Espresso Martini',
     category: 'Beverages',
-    image: 'https://placehold.co/300x200?text=Espresso+Martini',
+    image: '/Espresso Martini.jpg',
     price: 14.99,
     description: 'Coffee liqueur with vodka and cream',
     rating: 4.5,
@@ -79,7 +79,7 @@ const mockDishes = [
     id: '7',
     name: 'Grilled Vegetables',
     category: 'Sides',
-    image: 'https://placehold.co/300x200?text=Grilled+Vegetables',
+    image: '/Grilled Vegetables.jpg',
     price: 8.99,
     description: 'Seasonal vegetables with garlic oil',
     rating: 4.4,
@@ -89,7 +89,7 @@ const mockDishes = [
     id: '8',
     name: 'Shrimp Pasta',
     category: 'Main Courses',
-    image: 'https://placehold.co/300x200?text=Shrimp+Pasta',
+    image: '/Shrimp Pasta.jpg',
     price: 19.99,
     description: 'Fresh shrimp in white wine sauce',
     rating: 4.8,
@@ -117,30 +117,39 @@ export default function MenuPage() {
       : mockDishes.filter((dish) => dish.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <PromoBanner />
+    <div className="min-h-screen bg-background relative">
+      <div className="absolute top-6 right-6 z-50">
+        <Link
+          href="/"
+          className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-full shadow-sm hover:shadow-md transition-all text-muted-foreground hover:text-foreground group"
+        >
+          <X size={18} className="group-hover:rotate-90 transition-transform duration-300" />
+          <span className="text-sm font-medium">Exit Menu</span>
+        </Link>
+      </div>
+
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+        <div className="flex items-center gap-2 mb-4">
+          <MapPin size={20} className="text-accent" />
+          <span className="text-muted-foreground text-sm font-medium">{mockRestaurant.location}</span>
+        </div>
+        <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-3">
+          {mockRestaurant.name}
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          ⭐ {mockRestaurant.rating} · {mockDishes.filter(d => d.inStock).length} items available
+        </p>
+      </div>
+
+      <PromoBanner
+        title="Happy Hour Special!"
+        description="Get 20% off all beverages until 6 PM"
+        type="promotion"
+        fullWidth
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <MapPin size={20} className="text-accent" />
-            <span className="text-muted-foreground text-sm font-medium">{mockRestaurant.location}</span>
-          </div>
-          <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-3">
-            {mockRestaurant.name}
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            ⭐ {mockRestaurant.rating} · {mockDishes.filter(d => d.inStock).length} items available
-          </p>
-        </div>
-        <div className="px-4 sm:px-6 py-6">
-          <PromoBanner
-            title="Happy Hour Special!"
-            description="Get 20% off all beverages until 6 PM"
-            type="promotion"
-          />
-        </div>
 
         <CategoryTabs
           categories={categories}

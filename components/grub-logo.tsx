@@ -1,42 +1,29 @@
-export function GrubLogo({ className = "w-8 h-8" }: { className?: string }) {
+import NextImage from 'next/image'
+
+export function GrubLogo({ className = "w-12 h-12" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 200"
-      className={`${className} text-primary`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="50" cy="100" r="40" />
-      <circle cx="50" cy="100" r="25" />
-      <circle cx="50" cy="100" r="10" />
-    </svg>
+    <div className={`relative ${className}`}>
+      <NextImage
+        src="/Logo.png"
+        alt="Grub Logo"
+        fill
+        className="object-contain"
+      />
+    </div>
   )
 }
 
 export function GrubLogoWithText({
-  className = "w-32",
+  className = "w-[300px] h-16",
 }: { className?: string }) {
   return (
-    <div className="flex items-center gap-2">
-      <svg
-        viewBox="0 0 200 200"
-        className={`${className} text-primary`}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="50" cy="100" r="40" />
-        <circle cx="50" cy="100" r="25" />
-        <circle cx="50" cy="100" r="10" />
-      </svg>
-      <span className="text-2xl font-bold text-primary hidden sm:block">
-        grub
-      </span>
+    <div className={`relative ${className}`}>
+      <NextImage
+        src="/Logo.png"
+        alt="Grub Logo"
+        fill
+        className="object-contain"
+      />
     </div>
   )
 }

@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Inter', sans-serif;
+  /* Fonts are provided by next/font in layout.tsx */
 }
 
 body {

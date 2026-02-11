@@ -11,10 +11,10 @@ export default function HomePage() {
       <Navbar />
 
       <section
-        className="relative overflow-hidden pt-0 pb-16 md:pb-24 bg-black"
+        className="relative overflow-hidden pt-12 pb-16 md:pb-24 bg-black"
       >
         {/* Sparkles & Flare Effect */}
-        <div className="absolute top-[25px] left-1/2 -translate-x-1/2 w-full max-w-[40rem] h-40 z-0 pointer-events-none">
+        <div className="absolute top-[17.5px] left-1/2 -translate-x-1/2 w-full max-w-[40rem] h-40 z-0 pointer-events-none">
           {/* Gradients */}
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-[#692b39] to-transparent h-[2px] w-3/4 blur-sm" />
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-[#692b39] to-transparent h-px w-3/4" />
@@ -51,13 +51,13 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full sm:w-auto z-30 relative">
               <Button
-                className="bg-[#F5F5DC] text-[#692b39] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
+                className="bg-[#F5F5DC]/90 backdrop-blur-sm text-[#692b39] hover:bg-[#F5F5DC] text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl border-none"
                 asChild
               >
                 <Link href="/menu">View Sample Menu</Link>
               </Button>
               <Button
-                className="bg-[#F5F5DC] text-[#692b39] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
+                className="bg-[#F5F5DC]/90 backdrop-blur-sm text-[#692b39] hover:bg-[#F5F5DC] text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl border-none"
                 asChild
               >
                 <Link href="/login">For Restaurants</Link>
@@ -65,8 +65,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* New Image Grid/Cluster - Cross-Browser Height Stability */}
-          <div className="relative flex-none lg:flex-1 w-full max-w-[400px] md:max-w-[500px] min-h-[500px] md:min-h-[500px] lg:min-h-[550px] z-10 pt-4 mx-auto lg:mx-0">
+          {/* New Image Grid/Cluster - Cross-Browser Height Stability & Mobile Overlap */}
+          <div className="relative flex-none lg:flex-1 w-full max-w-[400px] md:max-w-[500px] min-h-[400px] md:min-h-[500px] lg:min-h-[550px] z-10 pt-4 mx-auto lg:mx-0 mt-[-120px] lg:mt-0">
             {/* Top Left - Wings - Scaled Down */}
             <div className="absolute top-[5%] left-[2%] lg:left-0 w-[55%] aspect-square z-20 animate-in fade-in slide-in-from-left-8 duration-700">
               <NextImage
@@ -99,7 +99,7 @@ export default function HomePage() {
             </div>
 
             {/* Bottom Right - Coffee/Chocolate */}
-            <div className="absolute bottom-[-5%] right-[-15%] lg:bottom-[-7.5%] lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
+            <div className="absolute bottom-[0%] right-[-15%] lg:bottom-[-7.5%] lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
               <NextImage
                 src="/Hero Image 4 Bottom Right.png"
                 alt="Desserts and Coffee"
@@ -333,7 +333,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-white/10 pt-8 text-center text-sm text-white/60">
-            <p>&copy; 2024 Grub. All rights reserved.</p>
+            <p>&copy; 2026 Grub. All rights reserved.</p>
           </div>
         </div>
       </footer>

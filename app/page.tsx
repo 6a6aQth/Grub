@@ -11,7 +11,7 @@ export default function HomePage() {
       <Navbar />
 
       <section
-        className="relative overflow-hidden pt-0 pb-0 bg-black"
+        className="relative overflow-hidden pt-0 pb-16 md:pb-24 bg-black"
       >
         {/* Sparkles & Flare Effect */}
         <div className="absolute top-[25px] left-1/2 -translate-x-1/2 w-full max-w-[40rem] h-40 z-0 pointer-events-none">
@@ -35,7 +35,7 @@ export default function HomePage() {
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,#000)]"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-6 w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-20 lg:gap-12">
           <div className="max-w-xl z-20 pt-8 md:pt-12 text-center lg:text-left flex flex-col items-center lg:items-start">
             <h1 className="font-serif text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight">
               Scan.<br />
@@ -49,7 +49,7 @@ export default function HomePage() {
               up-to-date.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full sm:w-auto z-30 relative">
               <Button
                 className="bg-[#F5F5DC] text-[#692b39] hover:bg-[#F5F5DC]/90 text-lg h-14 px-8 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-none"
                 asChild
@@ -65,8 +65,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* New Image Grid/Cluster - Responsive Design */}
-          <div className="relative flex-1 w-full max-w-[400px] md:max-w-[500px] h-[250px] md:h-[450px] lg:h-[550px] z-10 pt-4 mx-auto lg:mx-0">
+          {/* New Image Grid/Cluster - Cross-Browser Height Stability */}
+          <div className="relative flex-none lg:flex-1 w-full max-w-[400px] md:max-w-[500px] min-h-[500px] md:min-h-[500px] lg:min-h-[550px] z-10 pt-4 mx-auto lg:mx-0">
             {/* Top Left - Wings - Scaled Down */}
             <div className="absolute top-[5%] left-[2%] lg:left-0 w-[55%] aspect-square z-20 animate-in fade-in slide-in-from-left-8 duration-700">
               <NextImage
@@ -99,7 +99,7 @@ export default function HomePage() {
             </div>
 
             {/* Bottom Right - Coffee/Chocolate */}
-            <div className="absolute bottom-[-7.5%] right-0 lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
+            <div className="absolute bottom-0 lg:bottom-[-7.5%] right-0 lg:right-[-10%] w-[65%] lg:w-[70%] aspect-square z-20 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
               <NextImage
                 src="/Hero Image 4 Bottom Right.png"
                 alt="Desserts and Coffee"
